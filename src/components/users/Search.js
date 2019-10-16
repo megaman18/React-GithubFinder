@@ -7,15 +7,20 @@ import React, { Component } from 'react'
 
      onSubmit = e => {
       e.preventDefault();
-      this.props.searchUsers(this.state.text);
-      this.setState({text: ''});
+      if (this.state.text === '') {
+         this.props.setAlert('please enter something', 'light') 
+      } else {
+        this.props.searchUsers(this.state.text);
+        this.setState({text: ''});
+      }
+ 
      };
 
      onChange = e => 
       this.setState({[e.target.name]: e.target.value });
      
     render() {
-       const {showClear,clearUsers} = this.props;
+       const {showClear,clearUsers} = this.props; //destructing
 
         return (
             <div>
